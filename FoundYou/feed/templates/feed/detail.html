@@ -1,0 +1,68 @@
+{% extends 'feed/base.html'%}
+{% block title %} {{ object.title }} {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
+      <div class="thumbnail">
+          <table class="mytable table-responsive">
+              <tr><td class="my-td-item"><h5><b>Title</b></h5></td><td><h5>{{ object.title }}</h5></td></tr>
+              <tr><td class="my-td-item"><h5><b>Location</b></h5></td><td><h5>{{ object.location }}</h5></td></tr>
+              <tr><td class="my-td-item"><h5><b>Date</b></h5></td><td><h5>{{ object.date }}</h5></td></tr>
+              <tr><td class="my-td-item"><h5><b>Description</b></h5></td><td><h5 style="font-style:times">{{ object.Description }}</h5></td></tr>
+                <tr><td class="my-td-item"><b>Image</b></td><td>{% if object.image%}<img class="img-responsive" src="{{ object.image.url }}" alt="backmyitem" width="300" height="200"> {% endif %}</td></tr>
+
+          </table>
+          <hr>
+          <div class="row">
+          <table class="share-table table-responsive" style=" margin: 0 auto;">
+              <tr>
+                  <td>
+                      <a href="{% url 'feed:request' object.id  %}">
+                          <button type="button" class="request-to-return btn btn-default btn-md">
+                              <span class="glyphicon glyphicon-earphone">Request to return</span>&nbsp;&nbsp;
+                          </button>
+                      </a>
+                  </td>
+                  <td>
+
+                      <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                </div>
+
+                  </td>
+              </tr>
+
+
+          </table>
+
+          </div>
+
+
+          <div class="thumbnail-center">
+              <font size="4"><p>Click on <b>Request to return</b> Button if this is your item</p></font>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-md-3">
+  </div>
+  </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+             <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-width="100%" data-numposts="5"></div>
+        </div>
+        <div class="col-md-3">
+        </div>
+
+
+    </div>
+
+</div>
+ {% endblock %}

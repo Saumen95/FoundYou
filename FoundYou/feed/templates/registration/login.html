@@ -1,0 +1,56 @@
+{% extends "feed/base.html" %}
+{% block title %} Login to BackMyItem{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <div class="thumbnail">
+             <div class="thumbnail-center">
+                  <p>Login to becomes someone's happiness</a></p>
+       </div>
+
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+              {% if form.errors %}
+                <p>{{ form.errors }}</p>
+              {% endif %}
+        {% include 'registration/form_login_template.html'%}<br>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                            <button type="submit" class="login-btn btn btn-success">Login</button>
+
+                    </div><br><br>
+
+
+                </div>
+            <br><br>
+            {% include "feed/social-login.html" %}
+            <br><br>
+            <div class="row"><div class="col-md-12"><a href="{% url 'password_reset_reset1'%}" class="pull-right">>>Reset Password</a></div></div>
+
+        </form>
+            <br><br>
+        </div>
+        <div class="thumbnail">
+                <div class="thumbnail-center">
+                  <p>Don't have an account?<a href="{% url 'feed:signup' %}">&nbsp;&nbsp;&nbsp;Sign up</a></p>
+       </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+
+</div>
+<br>
+<br><br><br><br><br>
+
+{% endblock %}
+

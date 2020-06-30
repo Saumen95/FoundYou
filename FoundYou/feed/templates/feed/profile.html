@@ -1,0 +1,59 @@
+{% extends "feed/base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+      <div class="col-md-6 col-md-push-3">
+          <div class="thumbnail-center-profile">
+            <font size="2" style="color:black;">
+            <p>Hello &nbsp {{ user.first_name }} &nbsp Thanks to make the world a better place</p><br>
+                <p>Your's content</p>
+            </font>
+        </div>
+
+      {% for obj in object_list %}
+      <div class="thumbnail"  style="cursor: pointer;">
+          <div class="row">
+              <div class="col-md-9">
+                  <table class="mytable table-responsive">
+                      <tr><td class="my-td-item"><h5><b>Title</b></h5></td><td><h5>{{ obj.title }}</h5></td></tr>
+                      <tr><td class="my-td-item"><h5><b>Item Type</b></h5></td><td><h5>{{ obj.item_type }}</h5></td></tr>
+                      <tr><td class="my-td-item"><h5><b>Location</b></h5></td><td><h5>{{ obj.location }}</h5></td></tr>
+                      <tr><td colspan="2" class="post-review"><p><b>{% if obj.publish is False%}Your Post is in review{% endif %}</b></p></td></tr>
+                  </table>
+              </div>
+              <div class="col-md-3">
+                  <img class="img-responsive center" src="{{ obj.image.url }}" alt="backmyitem" width="80" height="100" style="margin: 0 auto;">
+                  <br><b><p style="font-size: 10px;text-align:center;">Posted Date</b><br>{{ obj.date }}</p>
+              </div>
+          </div>
+          <table class="mytable table-responsive">
+              <tr><td class="my-td-item"><a href="{% url 'feed:detail' obj.id %}">
+          <span class="glyphicon glyphicon-check"></span> Read_More
+        </a></td>
+              <td class="my-td-item"><a href="{% url 'feed:report-update' obj.id %}">
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        </a></td>
+              <td class="my-td-item"><a href="{% url 'feed:report-delete' obj.id %}">
+          <span class="glyphicon glyphicon-trash"></span> Trash
+              </a></td></tr>
+
+          </table>
+
+      </div>
+      {% endfor %}
+
+  </div>
+
+  <div class="col-md-3 col-md-pull-6">
+
+  </div>
+
+
+  <div class="col-md-3">
+
+  </div>
+  </div>
+</div>
+ {% endblock %}
